@@ -1,4 +1,4 @@
-from torando_debugger.debug import ExceptionReporter
+from tornado_debugger.debug import ExceptionReporter
 
 
 class DebuggerMixin:
