@@ -28,7 +28,7 @@ class IndexHandler(DebuggerMixin, web.RequestHandler):
     # always inherit from mixin class BEFORE the base class
 
     def get(self):
-        self.write('Hello, world')
+        1/0
 ```
 
 The `DebuggerMixin` only works in debug mode (i.e. when `debug=True` in the Application settings).
