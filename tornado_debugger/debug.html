@@ -245,7 +245,7 @@
     <h2>Traceback</h2>
 
     <div class="frames">
-    {% for frame in frames %}
+    {% for index, frame in enumerate(frames) %}
     <div class="frame">
         <p class="title">
             <code class="small">{{ frame['filename'] }}</code>,
@@ -255,7 +255,7 @@
 
         <div class="inner">
             {% if frame['lines'] %}
-            <table class="source" onclick="toggleSourceLines(this);">
+            <table class="source{% if index == 0 %} open{% end %}" onclick="toggleSourceLines(this);">
                 <tbody>
                     {% for lineno, line in frame['lines'] %}
                     <tr {% if lineno == frame['lineno'] %}class="hl"{% end %}>
