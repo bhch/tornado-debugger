@@ -2,8 +2,8 @@
 
 A debugger for Tornado server for a better development experience.
 
-Tornado server provides very primitive exception reporter. `tornado-debugger` aims to
-be a drop-in replacement for the built-in debugger.
+Tornado's default exception reporter is very basic and primitive. `tornado-debugger` is
+a drop-in replacement for the built-in debugger.
 
 
 ## Install
@@ -31,7 +31,7 @@ class IndexHandler(DebuggerMixin, web.RequestHandler):
         1/0
 ```
 
-The `DebuggerMixin` only works in debug mode (i.e. when `debug=True` in the Application settings).
+**Note:** The `DebuggerMixin` only works in debug mode (i.e. when `debug=True` in the Application settings).
 
 
 ## Screenshot
