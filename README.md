@@ -1,5 +1,7 @@
 # tornado-debugger
 
+<img src="https://img.shields.io/pypi/dm/tornado-debugger">
+
 A debugger for Tornado server for a better development experience.
 
 Tornado's default exception reporter is very basic and primitive. `tornado-debugger` is
