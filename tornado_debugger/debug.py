@@ -6,12 +6,31 @@ from pprint import pformat
 import tornado
 
 from tornado import template
+from tornado.escape import xhtml_escape
 
 
 SENSITIVE_SETTINGS_RE = re.compile(
     'api|key|pass|salt|secret|signature|token',
     flags=re.IGNORECASE
 )
+
+
+def debugger_escape(value):
+    """A custom escape function to handle UnicodeDecodeError.
+
+    Sometimes some local variables in a function may have certain byte data
+    which can't be decoded to string (such as xsrf tokens).
+
+    Since we display all the local variables found in the traceback frames
+    on the debugger page, all variables go through Tornado's ``xhtml_escape``
+    function. The variables which can't be decode will raise UnicodeDecodeError.
+
+    Hence, we create a custom function to deal with that.
+    """
+    try:
+        return xhtml_escape(value)
+    except UnicodeDecodeError:
+        return value
 
 
 class ExceptionReporter:
@@ -37,6 +56,7 @@ class ExceptionReporter:
             sys_version='%d.%d.%d' % sys.version_info[0:3],
             sys_executable=sys.executable,
             sys_path=sys.path,
+            debugger_escape=debugger_escape,
         )
 
     def get_app_settings(self):
